@@ -12,5 +12,10 @@
  */
 
 return [
-    // ...
+    'db' => array(
+        'driver' => 'Pdo',
+        'dsn' => 'mysql:dbname=zend-project;host=localhost',
+        'username' => 'root',
+        'password' => '',
+    )
 ];
