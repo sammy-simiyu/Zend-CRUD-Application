@@ -5,3 +5,35 @@
 
 
 </div>
+</div class="row">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Category</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php if(count($posts)>0):?>
+          <?php foreach ($posts as $post):?>
+        <tr>
+          <th><?php echo $post->getId(); ?></th>
+          <td><?php echo $post->getTitle(); ?></td>
+          <td><?php echo $post->getDescription(); ?></td>
+          <td><?php echo $post->getCategory(); ?></td>
+          <td><a href ="" class="label label-primary">VIEW</a></td>
+          <td><a href ="" class="label label-default">UPDATE</a></td>
+          <td><a href ="" class="label label-danger">DELETE</a></td>
+        </tr>
+      <?php endforeach;?>
+    <?php else:?>
+      <tr>
+        <td>No Record Found!</td>
+      </tr>
+    <?php endif;?>
+      </tbody>
+    </table>
+</div>
