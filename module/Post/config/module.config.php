@@ -27,7 +27,7 @@ return [
             'post' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route'    => '/post[/:action]',
+                    'route'    => '/post[/:action[/:id]]',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',
@@ -38,7 +38,7 @@ return [
     ],
     'controllers' => [
         'factories' => [
-          
+
         ],
     ],
     'view_manager' => [

@@ -20,7 +20,22 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
         $posts = $this->table->fetchAll();
-
         return new ViewModel(['posts' => $posts]);
+    }
+
+    public function addAction(){
+        return new ViewModel();
+    }
+
+    public function viewAction(){
+        return new ViewModel();
+    }
+
+    public function editAction(){
+        return new ViewModel();
+    }
+
+    public function deleteAction(){
+        return new ViewModel();
     }
 }
