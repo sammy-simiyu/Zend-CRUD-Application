@@ -41,7 +41,7 @@ class Module implements configProviderInterface
     public function getControllerConfig(){
        return [
          'factories' =>[
-              Controller\IndexController::class=>function($container){
+              Controller\IndexController::class=> function($container){
                  return new Controller\IndexController($container->get(Model\PostTable::class));
               }
          ]

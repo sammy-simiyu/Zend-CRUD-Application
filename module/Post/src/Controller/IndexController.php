@@ -17,6 +17,7 @@ class IndexController extends AbstractActionController
     public function __construct($table){
         $this->table = $table;
     }
+
     public function indexAction()
     {
         $posts = $this->table->fetchAll();
@@ -24,7 +25,24 @@ class IndexController extends AbstractActionController
     }
 
     public function addAction(){
-        return new ViewModel();
+        $form = new \Post\Form\PostForm;
+        $request = $this->getRequest();
+        if(!$request->isPost()){
+           return new ViewModel(['form' => $form]);
+        }
+
+        $post = new \Post\Model\Post();
+        $form->setData($request->getPost());
+        if(!$form->isValid()){
+           exit('id is not correct');
+        }
+        $post->exchangeArray($form->getData());
+        $this->table->saveData($post);
+        return $this->redirect()->toRoute('home',[
+          'controller' => 'home',
+          'action' => 'add'
+        ]);
+
     }
 
     public function viewAction(){
