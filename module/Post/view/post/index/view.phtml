@@ -1,1 +1,22 @@
-<h1>VIEW POST</h1>
+<?php
+ $title = 'View Post';
+ $this->headTitle($title);
+ ?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<ul class="list-group">
+    <li class="list-group-Item align-Items-center">
+        <span>Title: </span><?php echo $post->getTitle(); ?>
+    </li>
+    <li class="list-group-Item align-Items-center">
+        <span>Description: </span><?php echo $post->getDescription(); ?>
+    </li>
+    <li class="list-group-Item align-Items-center">
+        <span>Category: </span><?php echo $post->getCategory(); ?>
+    </li>
+</ul>
+
+<div class="row">
+  <a href ="<?php echo $this->basePath('/');?>" class="btn btn-primary">BACK</a>
+</div>
