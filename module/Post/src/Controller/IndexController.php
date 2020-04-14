@@ -95,6 +95,31 @@ class IndexController extends AbstractActionController
     }
 
     public function deleteAction(){
-        return new ViewModel();
+      $id = (int) $this->params()->fromRoute('id', 0);
+      if($id == 0){
+         exit('Error');
+      }
+      try{
+         $post = $this->table->getPost($id);
+      }
+      catch(Exception $e){
+         exit('Error');
+      }
+      $request = $this->getRequest();
+      if(!$request->isPost()){
+         return new ViewModel([
+              'post' => $post,
+              'id' => $id
+      ]);
     }
+    $delete = $request->getPost('delete', 'No');
+    if($delete == 'Yes'){
+       $id = (int) $post->getId();
+       $this->table->deletePost($id);
+       return $this->redirect()->toRoute('home');
+    }
+    else{
+       return $this->redirect()->toRoute('home');
+    }
+ }
 }

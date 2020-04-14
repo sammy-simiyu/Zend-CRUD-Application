@@ -40,5 +40,11 @@
             ]);
             return $data->current();
         }
+
+        public function deletePost($id){
+            $this->tableGateway->delete([
+               'id' => $id
+            ]);
+        }
     }
 ?>
