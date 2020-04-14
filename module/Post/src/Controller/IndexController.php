@@ -63,7 +63,35 @@ class IndexController extends AbstractActionController
     }
 
     public function editAction(){
-        return new ViewModel();
+      $id = (int) $this->params()->fromRoute('id', 0);
+      if($id == 0){
+         exit('Error');
+      }
+      try{
+         $post = $this->table->getPost($id);
+      }
+      catch(Exception $e){
+         exit('Error');
+      }
+      $form = new\Post\Form\PostForm();
+      $form->bind($post);
+      $request = $this->getRequest();
+      if(!$request->isPost()){
+         return new ViewModel([
+              'form' => $form,
+              'id' => $id
+      ]);
+     }
+     $form = setdata($request->getPost());
+     if(!$form->isValid()){
+        exit('Error');
+     $this->table->saveData($post);
+     return $this->redirect()->toRoute('home',[
+       'controller' => 'edit',
+       'action' => 'edit',
+       'id' => $id
+     ]);
+     }
     }
 
     public function deleteAction(){
